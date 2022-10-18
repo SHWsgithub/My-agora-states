@@ -1,23 +1,35 @@
 import {useState} from 'react';
 
-const DiscussionSubmit = () => {
+const DiscussionSubmit = ({onCreate}) => {
     const [discussion, setDiscussion] = useState({
         author: "",
         title: "",
         story: ""
     });
-
+    
     const handleChangeDiscussion = (e) => {
         setDiscussion({
             ...discussion,
             [e.target.name]: e.target.value,
         })
-        console.log(discussion)
+        // console.log(discussion)
     }
 
     const handleSubmit= (e) => {
         e.preventDefault();
-        console.log(discussion)
+        // console.log(discussion)
+        onCreate(discussion.author, discussion.title, discussion.story)
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                discussion
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
         setDiscussion({
             author: "",
             title: "",
