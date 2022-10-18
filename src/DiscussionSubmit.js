@@ -27,7 +27,7 @@ const DiscussionSubmit = () => {
     
     return (
         <div className='DiscussionSubmit'>
-            <h2>My Agora States</h2>
+            <h1>My Agora States</h1>
             <section>
                 <form className="form__container">
                     <div className="form__input--wrapper">
